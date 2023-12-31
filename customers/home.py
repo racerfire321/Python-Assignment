@@ -7,7 +7,7 @@ from  dbms import  Global
 
 
 class Login:
-    def __init__(self, root):
+    def __init__(self,root):
         self.root = root
         self.root.title("Taxi Booking System")
         # self.root.config(background="white", width=1200, height=900)
@@ -23,46 +23,63 @@ class Login:
         self.img = ImageTk.PhotoImage(self.img)
         self.image_label = tk.Label(self.image_frame, image=self.img)
         self.image_label.pack(side=tk.LEFT)
+        self.web_label = tk.Label(self.image_frame, text="www.Cabity.com", background="white",
+                                     foreground="black", font=("Helvetica", 24, "bold","underline"))
+        self.web_label.place(x=300, y=660)
 
         # Create a frame for the login form
         self.form_frame = tk.Frame(self.root, background="#c3ecb2", width=340, height=760)
         self.form_frame.pack(side=tk.RIGHT, pady=10, fill=tk.BOTH, expand=True)
 
         # Create and place widgets on the form frame
-        self.header_label = tk.Label(self.form_frame, text="Welcome To Taxi Service", background="#c3ecb2",
-                                     foreground="red", font=("Caveat", 23, "bold"))
-        self.header_label.place(x=90, y=130)
+        self.header_label = tk.Label(self.form_frame, text="Welcome to", background="#c3ecb2",
+                                     foreground="red", font=("Times New Roman", 28, "bold"))
+        self.header_label.place(x=70, y=100)
 
-        self.username_label = tk.Label(self.form_frame, text="Username:", background="#c3ecb2", fg="red",
-                                       font=("Helvetica", 16, "bold"))
-        self.username_label.place(x=120, y=260)
+        # Additional label for the app name
+        self.app_name_label = tk.Label(self.form_frame, text="🚗Cabity", background="#E0F8E0",
+                                       foreground="green", font=("Times New Roman", 32, "bold"))
+        self.app_name_label.place(x=270, y=97)
+
+        # Slogan label
+        self.slogan_label = tk.Label(self.form_frame, text="Your Portal to Smooth Travels!", background="#c3ecb2",
+                                     foreground="black", font=("Helvetica", 14,"bold"))
+        self.slogan_label.place(x=120, y=160)
+
+        self.username_label = tk.Label(self.form_frame, text="Email:", background="#c3ecb2", fg="red",
+                                       font=("Helvetica", 18, "bold"))
+        self.username_label.place(x=100, y=260)
 
         self.email_entry = tk.Entry(self.form_frame, width=25,
-                                    font=("Helvetica", 16, "bold"))  # Set the width of the entry
-        self.email_entry.place(x=120, y=300)
+                                    font=("Helvetica", 18, "bold"),highlightcolor="green",highlightthickness=3)  # Set the width of the entry
+        self.email_entry.place(x=100, y=310)
 
         self.password_label = tk.Label(self.form_frame, text="Password:", background="#c3ecb2", fg="red",
-                                       font=("Helvetica", 16, "bold"))
-        self.password_label.place(x=120, y=350)
+                                       font=("Helvetica", 18, "bold"))
+        self.password_label.place(x=100, y=360)
 
         self.password_entry = tk.Entry(self.form_frame, show="*", width=25,
-                                       font=("Helvetica", 16, "bold"))  # Set the width of the entry
-        self.password_entry.place(x=120, y=400)
+                                       font=("Helvetica", 18, "bold"),highlightcolor="green",highlightthickness=3)  # Set the width of the entry
+        self.password_entry.place(x=100, y=410)
 
         self.toggle_button = tk.Checkbutton(self.form_frame, text="Show Password",
                                             command=self.toggle_password_visibility, background="#c3ecb2")
-        self.toggle_button.place(x=320, y=360)
+        self.toggle_button.place(x=320, y=370)
 
-        self.login_button = tk.Button(self.form_frame, text="Login", command=self.validate_login, width=20, bg="red",
-                                      fg="white", font=("Helvetica", 14, "bold"))
-        self.login_button.place(x=150, y=470)
+        self.forget_button = tk.Label(self.form_frame, text="Forget Password?", background="#c3ecb2")
+        self.forget_button.place(x=320, y=460)
+        self.forget_button.config(font=("Arial", 12, "underline"), cursor="hand2")
+
+        self.login_button = tk.Button(self.form_frame, text="Login", command=self.validate_login, width=17, bg="red",
+                                      fg="white", font=("Helvetica", 16, "bold"))
+        self.login_button.place(x=150, y=500)
 
         self.register_label = tk.Label(self.form_frame, text="No Account? No Worries! Register for Instant Access.",
                                        background="#c3ecb2", foreground="black", font=("Helvetica", 13))
         self.register_label.place(x=80, y=660)
 
-        self.register_button = tk.Button(self.form_frame, text="Register", width=20, bg="green", fg="white",
-                                         font=("Helvetica", 14, "bold") ,command=self.register)
+        self.register_button = tk.Button(self.form_frame, text="Register", width=17, bg="green", fg="white",
+                                         font=("Helvetica", 16, "bold") ,command=self.register)
         self.register_button.place(x=150, y=690)
 
     def toggle_password_visibility(self):
@@ -77,9 +94,9 @@ class Login:
         self.root.destroy()
 
         from register import RegistrationForm
-
-        registers = RegistrationForm(root)
-        registers.mainloop()
+        register_window = tk.Tk()
+        RegistrationForm(register_window)
+        register_window.mainloop()
     def validate_login(self):
         email = self.email_entry.get()
         password = self.password_entry.get()
@@ -95,8 +112,11 @@ class Login:
 
                 self.root.destroy()
                 from booking import bookingDashboard
-                booking = bookingDashboard(self.root)
-                booking.mainloop()
+                booking_window = tk.Tk()
+                bookingDashboard(booking_window)
+                booking_window.mainloop()
+                # booking = bookingDashboard(self.root)
+                # booking.mainloop()
             elif db.login_driver(email, password) :
                 driver_id = db.login_driver(email, password)
                 Global.driverid = driver_id

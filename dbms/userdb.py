@@ -11,10 +11,11 @@ class UserDatabase:
         if self.conn:
             self.conn.close()
 
-    def insert_customers(self, full_name, dob, phone_number, gender, user_type, email, password):
-        sql = """INSERT INTO customers (full_name, dob, phone_number, gender, user_type, email, password)
-                 VALUES (%s, %s, %s, %s, %s, %s, %s)"""
-        values = (full_name, dob, phone_number, gender, user_type, email, password)
+    def insert_customers(self, full_name, dob, phone_number, gender, user_type, email, password,payment_method,creditcard_No):
+        sql = """INSERT INTO customers (full_name, dob, phone_number, gender, user_type, email, password,payment_method,creditcard_No)
+                 VALUES (%s, %s, %s, %s, %s, %s, %s,%s,%s 
+                 )"""
+        values = (full_name, dob, phone_number, gender, user_type, email, password,payment_method,creditcard_No)
         try:
             self.connect()
             cursor = self.conn.cursor()
@@ -24,10 +25,10 @@ class UserDatabase:
             print("Error:", e)
         finally:
             self.close_connection()
-    def update_customers(self, full_name, dob, phone_number, gender, user_type, email, password):
-        sql = """UPDATE INTO customers (full_name, dob, phone_number, gender, user_type, email, password)
-                 VALUES (%s, %s, %s, %s, %s, %s, %s)"""
-        values = (full_name, dob, phone_number, gender, user_type, email, password)
+    def update_customers(self, full_name, dob, phone_number, gender, user_type, email, password,payment_method,creditcard_No):
+        sql = """UPDATE INTO customers (full_name, dob, phone_number, gender, user_type, email, password,payment_method,creditcard_No)
+                 VALUES (%s, %s, %s, %s, %s, %s, %s,%s,%s)"""
+        values = (full_name, dob, phone_number, gender, user_type, email, password,payment_method,creditcard_No)
         try:
             self.connect()
             cursor = self.conn.cursor()

@@ -26,7 +26,7 @@ class Profile:
         self.full_name_label = tk.Label(self.main_frame, text="Full Name", width=15, font=("Helvetica", 18, "bold"),
                                         bg="white", fg="black")
         self.full_name_label.place(x=110, y=400)
-        self.entry_full_name = Entry(self.main_frame, width=20, font=("bold", 15), bg="white")
+        self.entry_full_name = Entry(self.main_frame, width=20, font=("bold", 15), bg="white",highlightcolor="green",highlightthickness=3)
         self.entry_full_name.place(x=350, y=400)
         self.entry_full_name.insert(0, data[1])
         self.entry_full_name.config(state=tk.DISABLED)
@@ -34,7 +34,7 @@ class Profile:
         self.dob_label = tk.Label(self.main_frame, text="Date of Birth", width=15, font=("Helvetica", 18, "bold"),
                                   bg="white", fg="black")
         self.dob_label.place(x=610, y=400)
-        self.entry_dob = Entry(self.main_frame, width=20, font=("bold", 15), bg="white")
+        self.entry_dob = Entry(self.main_frame, width=20, font=("bold", 15), bg="white",highlightcolor="green",highlightthickness=3)
         self.entry_dob.place(x=850, y=400)
         self.entry_dob.insert(0, data[2])
         self.entry_dob.config(state=tk.DISABLED)
@@ -42,7 +42,7 @@ class Profile:
         self.phoneNumber_label = tk.Label(self.main_frame, text="Phone Number", width=15,
                                           font=("Helvetica", 18, "bold"), bg="white", fg="black")
         self.phoneNumber_label.place(x=120, y=480)
-        self.entry_phone_number = Entry(self.main_frame, width=20, font=("bold", 15), bg="white")
+        self.entry_phone_number = Entry(self.main_frame, width=20, font=("bold", 15), bg="white",highlightcolor="green",highlightthickness=3)
         self.entry_phone_number.place(x=350, y=480)
         self.entry_phone_number.insert(0, data[3])
         self.entry_phone_number.config(state=tk.DISABLED)
@@ -50,7 +50,7 @@ class Profile:
         self.email_label = tk.Label(self.main_frame, text="Email", width=15, font=("Helvetica", 18, "bold"), bg="white",
                                     fg="black")
         self.email_label.place(x=610, y=480)
-        self.entry_email = Entry(self.main_frame, width=20, font=("bold", 15), bg="white")
+        self.entry_email = Entry(self.main_frame, width=20, font=("bold", 15), bg="white",highlightcolor="green",highlightthickness=3)
         self.entry_email.place(x=850, y=480)
         self.entry_email.insert(0, data[6])
         self.entry_email.config(state=tk.DISABLED)
@@ -72,7 +72,7 @@ class Profile:
         self.password_label = tk.Label(self.main_frame, text="Password:",width=15, font=("Helvetica", 18, "bold"),
                                        bg="white", fg="black")
         self.password_label.place(x=620, y=550)
-        self.password_entry = Entry(self.main_frame, show="*", width=20, font=("bold", 15), bg="white")
+        self.password_entry = Entry(self.main_frame, show="*", width=20, font=("bold", 15), bg="white",highlightcolor="green",highlightthickness=3)
         self.password_entry.place(x=850, y=550)
         self.password_entry.insert(0, data[7])
         self.password_entry.config(state=tk.DISABLED)

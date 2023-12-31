@@ -129,9 +129,12 @@ class Dashboard:
             login = Login(login_root)
             login_root.mainloop()
     def makeBooking(self):
+
         self.root.destroy()
-        from customers.booking import bookingDashboard
-        bookingDashboard(self.root)
+        from booking import bookingDashboard
+        booking_window = tk.Tk()
+        bookingDashboard(booking_window)
+        booking_window.mainloop()
 
 
 if __name__ == "__main__":
