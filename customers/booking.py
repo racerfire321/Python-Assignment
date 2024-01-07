@@ -1,6 +1,6 @@
 import re
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, simpledialog
 from tkinter import messagebox
 from tkintermapview import TkinterMapView
 from geopy.geocoders import Nominatim
@@ -15,6 +15,8 @@ class bookingDashboard:
     def __init__(self, root):
         self.root = root
         self.root.state("zoomed")
+        self.root.title("Taxi Booking System")
+
         self.origin_marker_id = None
         self.destination_marker_id = None
         self.path = None
@@ -49,9 +51,20 @@ class bookingDashboard:
         # Time entry
         self.time_label = tk.Label(self.entry_frame, text="Time", background="#c3ecb2",
                                    fg="dark green", font=("Helvetica", 14, "bold"))
-        self.time_label.place(x=270, y=40)
-        self.time_entry = tk.Entry(self.entry_frame, bg="white", width=5,font=("Helvetica", 14, "bold"),highlightcolor="green",highlightthickness=3)
-        self.time_entry.place(x=320, y=40)
+        self.time_label.place(x=259, y=40)
+        self.time_entry = tk.Entry(self.entry_frame, bg="white", width=2, font=("Helvetica", 14, "bold"),
+                                   highlightcolor="green", highlightthickness=3)
+        self.time_entry.place(x=309, y=40)
+        self.label = tk.Label(self.entry_frame, text=":", background="#c3ecb2",
+                                  fg="dark green", font=("Helvetica", 15, "bold"))
+        self.label.place(x=333, y=40)
+        self.time_entry1 = tk.Entry(self.entry_frame, bg="white", width=2, font=("Helvetica", 14, "bold"),
+                                   highlightcolor="green", highlightthickness=3)
+        self.time_entry1.place(x=349, y=40)
+        self.time_types = ["AM", "PM"]
+        self.var_time_type = tk.StringVar()
+        self.user_time_combobox = ttk.Combobox(self.entry_frame, textvariable=self.var_time_type, values=self.time_types,width=3)
+        self.user_time_combobox.place(x=384, y=47)
 
         # Button to trigger setting address, time, and calculating distance
         self.book_taxi_button = tk.Button(self.entry_frame, text="Book Taxi", command=self.book_taxi,
@@ -75,6 +88,7 @@ class bookingDashboard:
     # def menuOpen(self):
     #     Dashboard()
 
+
     def book_taxi(self):
         # Disable entry fields
 
@@ -82,7 +96,7 @@ class bookingDashboard:
         self.destination_entry.config(state=tk.DISABLED)
         self.date_entry.config(state=tk.DISABLED)
         self.time_entry.config(state=tk.DISABLED)
-
+        self.time_entry1.config(state=tk.DISABLED)
         # Disable Book Taxi button
         self.book_taxi_button.config(state=tk.DISABLED)
 
@@ -103,7 +117,7 @@ class bookingDashboard:
         # Open confirmation popup
         self.open_confirmation_popup(
             self.origin_entry.get(), self.destination_entry.get(), distance, amount,
-            self.date_entry.get(), self.time_entry.get()
+            self.date_entry.get(), self.time_entry.get(), self.time_entry1.get(), self.var_time_type.get()
         )
 
     def reset_entries(self):
@@ -112,12 +126,16 @@ class bookingDashboard:
         self.destination_entry.config(state=tk.NORMAL)
         self.date_entry.config(state=tk.NORMAL)
         self.time_entry.config(state=tk.NORMAL)
+        self.time_entry1.config(state=tk.NORMAL)
 
         # Clear entry fields
         self.origin_entry.delete(0, tk.END)
         self.destination_entry.delete(0, tk.END)
         self.date_entry.delete(0, tk.END)
         self.time_entry.delete(0, tk.END)
+        self.time_entry1.delete(0, tk.END)
+
+
 
         # Enable Book Taxi button
         self.book_taxi_button.config(state=tk.NORMAL)
@@ -182,9 +200,19 @@ class bookingDashboard:
         else:
             return None
 
-    def open_confirmation_popup(self, origin, destination, distance, amount, date, time):
-        if origin == "" or destination == "" or date == "" or time == "":
-            messagebox.showwarning("Taxi Booking System", "Please enter all the fields correctly!")
+    def open_confirmation_popup(self, origin, destination, distance, amount, date, time,time2,time3):
+        if origin == "":
+            messagebox.showwarning("Taxi Booking System", "Please enter origin correctly!")
+        elif destination == "":
+            messagebox.showwarning("Taxi Booking System", "Please enter destination correctly!")
+        elif date == "":
+            messagebox.showwarning("Taxi Booking System", "Please enter date correctly!")
+        elif time == "":
+            messagebox.showwarning("Taxi Booking System", "Please enter time Hour correctly!")
+        elif time2 == "":
+            messagebox.showwarning("Taxi Booking System", "Please enter Minutes in time correctly!")
+        elif time3 == "":
+            messagebox.showwarning("Taxi Booking System", "Please select AM/PM in time correctly!")
         else:
             confirmation_window = tk.Toplevel(self.entry_frame.winfo_toplevel(), bg="#c3ecb2")
             confirmation_window.title("Booking Confirmation")
@@ -214,7 +242,7 @@ class bookingDashboard:
                 ("Origin", origin),
                 ("Destination", destination),
                 ("Date", date),
-                ("Time", time),
+                ("Time", time+":"+time2+time3),
                 ("Distance (km)", f"{distance:.2f}km"),
                 ("Total Price ($)", f"{amount}$"),
             ]
@@ -263,7 +291,7 @@ class bookingDashboard:
         else:
             ride_fare = 0.0
         date = self.date_entry.get_date()
-        time = self.time_entry.get()
+        time = self.time_entry.get() + ":" + self.time_entry1.get() + self.var_time_type.get()
         origin = self.origin_entry.get()
         destination = self.destination_entry.get()
         bookingstatus = "pending"

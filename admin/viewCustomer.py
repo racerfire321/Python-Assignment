@@ -29,7 +29,7 @@ class ViewCustomer:
                                highlightthickness=2)
         self.dob_entry.place(x=550, y=80, height=35, width=150)
 
-        self.lblPhoneNumber = Label(self.textField, text="Phone Number:", font=("Arial", 16, "bold"), bg="#E0F8E0",
+        self.lblPhoneNumber = Label(self.textField, text="Phone No:", font=("Arial", 16, "bold"), bg="#E0F8E0",
                                     anchor="w")
         self.lblPhoneNumber.place(x=20, y=160, height=30, width=200)  # Adjusted y-coordinate
         self.phone_number_entry = Entry(self.textField, font=("Arial", 14, "bold"), highlightcolor="orange",

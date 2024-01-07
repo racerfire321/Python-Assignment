@@ -11,7 +11,7 @@ class DisplayBill:
         style.configure("Treeview.Treeview", rowheight=40, padding=(10, 10))
 
         self.ridehistory_tree = ttk.Treeview(self.sub_frame, columns=(
-            "Booking Id", "Pickup Date", "Pickup Time", "Origin", "Destination", "Status", "Driver Id"),
+            "Booking Id", "Pickup Date", "Pickup Time", "Origin", "Destination", "Status","Customer Id" ,"Driver Id"),
                                              show="headings", style="Treeview.Treeview")
 
         # Add column headings
@@ -21,13 +21,14 @@ class DisplayBill:
         self.ridehistory_tree.heading("Origin", text="Origin")
         self.ridehistory_tree.heading("Destination", text="Destination")
         self.ridehistory_tree.heading("Status", text="Status")
+        self.ridehistory_tree.heading("Customer Id", text="Customer Id")
         self.ridehistory_tree.heading("Driver Id", text="Driver Id")
         self.ridehistory_tree.place(x=50, y=50, height=400, width=900)
         self.ridehistory_tree.bind("<<TreeviewSelect>>", self.selectedRow)
 
         # Set up column widths
-        column_width = 900 // 7
-        for column in ("Booking Id", "Pickup Date", "Pickup Time", "Origin", "Destination", "Status", "Driver Id"):
+        column_width = 900 // 8
+        for column in ("Booking Id", "Pickup Date", "Pickup Time", "Origin", "Destination", "Status","Customer Id", "Driver Id"):
             self.ridehistory_tree.column(column, width=column_width)
 
         # Configure tags for bold text and green color

@@ -11,6 +11,7 @@ class RegistrationForm:
     def __init__(self, root):
         self.root = root
         self.root.state("zoomed")
+        self.root.title("Taxi Booking System")
 
         # Create a frame for the image
 
@@ -108,7 +109,8 @@ class RegistrationForm:
         self.password_entry = Entry(self.main_frame, show="*", width=20, font=("bold", 15),highlightcolor="green",highlightthickness=3)
         self.password_entry.place(x=260, y=630)
 
-        self.toggle_button = Checkbutton(self.main_frame, text="show Password",background="#c3ecb2")
+        self.toggle_button = Checkbutton(self.main_frame, text="show Password",background="#c3ecb2",
+                                         command=self.toggle_password_visibility)
         self.toggle_button.place(x=490, y=630)
 
         self.submit_button = Button(self.main_frame, bg="green", fg="white", text="Submit", width=14, command=self.submit,font=("bold", 14))
@@ -130,6 +132,12 @@ class RegistrationForm:
 
         # Trace user_type variable to update layout dynamically
         self.var_user_type.trace("w", lambda *args: self.update_layout())
+    def toggle_password_visibility(self):
+        current_state = self.password_entry.cget("show")
+        if current_state == "*":
+            self.password_entry.configure(show="")
+        else:
+            self.password_entry.configure(show="*")
 
     def submit(self):
     # Your existing submit method here...

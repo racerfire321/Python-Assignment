@@ -24,11 +24,11 @@ class RideHistory:
         self.ridehistory_tree.heading("Status", text="Status")
         self.ridehistory_tree.heading("Customer Id", text="Customer Id")
         self.ridehistory_tree.heading("Driver Id", text="Driver Id")
-        self.ridehistory_tree.place(x=50, y=50, height=700, width=1000)
+        self.ridehistory_tree.place(x=50, y=50, height=700, width=1100)
 
 
         # Set up column widths
-        column_width = 1000 // 8
+        column_width = 1100 // 8
         for column in ("Booking Id", "Pickup Date", "Pickup Time", "Origin", "Destination", "Status",
                        "Customer Id", "Driver Id"):
             self.ridehistory_tree.column(column, width=column_width)
