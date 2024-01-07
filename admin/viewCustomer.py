@@ -131,8 +131,9 @@ class ViewCustomer:
         db.updateCustomer(customer_id, full_name, dob, phone_number, gender, email, password)
 
         db.close_connection()
-        messagebox.showinfo("Success", "Customer updated successfully!")
         self.update_treeview()
+        messagebox.showinfo("Success", "Customer updated successfully!")
+
 
 
     def delete(self):
@@ -143,8 +144,9 @@ class ViewCustomer:
         # Call the delete_booking method from BookingDatabase
         db.delete_customer(customer_id)
         db.close_connection()
-        messagebox.showinfo("Success", "Deleted Customer successfully!")
         self.update_treeview()
+        messagebox.showinfo("Success", "Deleted Customer successfully!")
+
 
 
     def update_treeview(self):

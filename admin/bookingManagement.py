@@ -153,9 +153,9 @@ class ViewBooking:
 
         db.updatebooking(booking_id, date, time, origin, destination, bookingstatus,customersid, driverid, adminid)
         db.close_connection()
-        messagebox.showinfo("Success", "Booking updated successfully!")
 
         self.update_treeview()
+        messagebox.showinfo("Success", "Booking updated successfully!")
 
     def delete(self):
         pass
@@ -165,8 +165,9 @@ class ViewBooking:
         # Call the delete_booking method from BookingDatabase
         db.delete_booking(booking_id)
         db.close_connection()
-        messagebox.showinfo("Success", "Booking updated successfully!")
+
         self.update_treeview()
+        messagebox.showinfo("Success", "Booking deleted successfully!")
 
     def update_treeview(self):
         # Clear the existing data in the Treeview

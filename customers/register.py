@@ -13,7 +13,7 @@ class RegistrationForm:
         self.root.state("zoomed")
         self.root.title("Taxi Booking System")
 
-        # Create a frame for the image
+
 
         # Create a main frame
         self.frame = tk.Frame(root,bg="white")
@@ -22,12 +22,7 @@ class RegistrationForm:
         self.image_frame = tk.Frame(self.frame)
         self.image_frame.pack(side=tk.LEFT, pady=0)
 
-        # Add an image (replace "path_to_image.png" with the actual path to your image file)
-        # self.image_path = "../img/cab_driver_device_1.jpg"
-        # self.img = Image.open(self.image_path)
-        # self.img = ImageTk.PhotoImage(self.img)
-        # self.image_label = tk.Label(self.image_frame, image=self.img)
-        # self.image_label.pack(side=tk.LEFT)
+
 
         original_image = Image.open("../img/cab_driver_device_1.jpg")
         resized_image = original_image.resize((900, 720))

@@ -112,7 +112,7 @@ class bookingDashboard:
         self.distance_label.config(text=f"Distance: {distance} km")
 
         amount = self.calculate_price(self.origin_entry.get(), self.destination_entry.get())
-        self.amount_label.config(text=f"TotalPrice: {amount} km")
+        self.amount_label.config(text=f"TotalPrice: {amount} $")
 
         # Open confirmation popup
         self.open_confirmation_popup(
@@ -144,6 +144,7 @@ class bookingDashboard:
         # Clear distance label
         self.distance_label.config(text="")
         self.amount_label.config(text="")
+
 
         # Clear markers on the map
         if self.origin_marker_id:
@@ -202,8 +203,10 @@ class bookingDashboard:
 
     def open_confirmation_popup(self, origin, destination, distance, amount, date, time,time2,time3):
         if origin == "":
+
             messagebox.showwarning("Taxi Booking System", "Please enter origin correctly!")
         elif destination == "":
+
             messagebox.showwarning("Taxi Booking System", "Please enter destination correctly!")
         elif date == "":
             messagebox.showwarning("Taxi Booking System", "Please enter date correctly!")

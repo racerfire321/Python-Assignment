@@ -135,8 +135,9 @@ class ViewDriver:
         db.updateDriver(driver_id, full_name, dob, phone_number, gender, email, password)
 
         db.close_connection()
-        messagebox.showinfo("Success", "Driver updated successfully!")
         self.update_treeview()
+        messagebox.showinfo("Success", "Driver updated successfully!")
+
 
     def delete(self):
         pass
@@ -146,8 +147,9 @@ class ViewDriver:
         # Call the delete_booking method from BookingDatabase
         db.delete_driver(driver_id)
         db.close_connection()
-        messagebox.showinfo("Success", "Deleted Driver successfully!")
         self.update_treeview()
+        messagebox.showinfo("Success", "Deleted Driver successfully!")
+
 
     def update_treeview(self):
         # Clear the existing data in the Treeview
